@@ -1,1 +1,12 @@
-<textarea id="rectangle"></textarea>
+<div>
+  <textarea id="inputrectangle"></textarea>
+  <div id="rectangle" align="center">
+    SAMPLE TEXTS:
+    <button type="randomPlaintext">Random Plaintext</button>
+    <button type="randomCyphertext">Random Cyphertext</button>
+    <br><br>
+    <span *ngFor="let letter of alphabet; index as i">{{alphabet[i]}}</span>
+    <br>
+    <input type="text" maxlength="1" ng-model="a" class="input">
+  </div>
+</div>
