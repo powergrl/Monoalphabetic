@@ -5,8 +5,22 @@
     <button type="randomPlaintext">Random Plaintext</button>
     <button type="randomCyphertext">Random Cyphertext</button>
     <br><br>
-    <span *ngFor="let letter of alphabet; index as i">{{alphabet[i]}}</span>
+    <input type="text" value="PLAINTEXT" id="plainTextStyle" disabled>
+    <span *ngFor="let letter of plainText; index as i">
+      <input type="text" value="{{plainText[i]}}" maxlength="1" ng-model="a"
+      class="input" onfocus="this.value=''">
+    </span>
     <br>
-    <input type="text" maxlength="1" ng-model="a" class="input">
+    <input type="text" value="cyphertext" id="cypherTextStyle" disabled>
+    <span *ngFor="let letter of cypherText; index as i">
+      <input type="text" value="{{cypherText[i]}}" maxlength="1" ng-model="a"
+      class="input" onfocus="this.value=''">
+    </span>
+    <br><br>
+    <input type="radio" id="encrypt" name="crypt" height="12px">
+    <label for="encrypt">Encrypt</label>
+    <input type="radio" id="decrypt" name="crypt" height="12px">
+    <label for="decrypt">Decrypt</label>
+    <br>
   </div>
 </div>

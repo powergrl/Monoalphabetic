@@ -1,23 +1,43 @@
 /* The format for the input rectangle */
-#inputrectangle{
-    width: 600px;
-    height: 300px;
-    background: #ffffff;
-    left: 29%;
-    position: relative;
-    margin-left: 0px;
-    border: 12px solid #6496c8
+#inputrectangle {
+  width: 600px;
+  height: 300px;
+  background: #ffffff;
+  left: 29%;
+  position: relative;
+  margin-left: 0px;
+  border: 12px solid #6496c8
 }
 
 /* The format for the rectangle */
-#rectangle{
-    width: 628px;
-    height: 125px;
-    background: #6496c8;
-    left: 29%;
-    position: relative;
-    top: -4px;
-    font-size: 12px;
+#rectangle {
+  width: 628px;
+  height: 125px;
+  background: #6496c8;
+  left: 29%;
+  position: relative;
+  top: -4px;
+  font-size: 12px;
+}
+
+/* The format for the words PLAINTEXT */
+#plainTextStyle {
+  color: blue;
+  background-color: white;
+  font-size: 11px;
+  width: 65px;
+  text-align: center;
+  border: .5px solid black;
+}
+
+/* The format for the words cyphertext */
+#cypherTextStyle {
+  color: red;
+  background-color: white;
+  font-size: 11px;
+  width: 65px;
+  text-align: center;
+  border: .5px solid black;
 }
 
 /* Use h2 for actual words */
@@ -53,12 +73,14 @@ button {
 /* Use input for input boxes */
 .input {
   font-size: 11px;
-  width: 11px;
+  width: 12px;
   text-align: center;
   color: transparent;
-  text-shadow: 0 0 0 #000000
+  text-shadow: 0 0 0 #000000;
+  border: .5px solid black;
 }
 
+/* Use input.focus for when the box is being selected */
 .input:focus {
   background-color: yellow;
   outline: none;
