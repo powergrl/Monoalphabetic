@@ -8,18 +8,18 @@
     <input type="text" value="PLAINTEXT" id="plainTextStyle" disabled>
     <span *ngFor="let letter of plainText; index as i">
       <input type="text" value="{{plainText[i]}}" maxlength="1" ng-model="a"
-      class="input" onfocus="this.value=''">
+      class="input" style="text-shadow:0 0 0 blue">
     </span>
     <br>
     <input type="text" value="cyphertext" id="cypherTextStyle" disabled>
     <span *ngFor="let letter of cypherText; index as i">
       <input type="text" value="{{cypherText[i]}}" maxlength="1" ng-model="a"
-      class="input" onfocus="this.value=''">
+      class="input" style="font-color:red" onfocus="this.value=''" style="text-shadow:0 0 0 red">
     </span>
     <br><br>
-    <input type="radio" id="encrypt" name="crypt" height="12px">
+    <input type="radio" id="encrypt" name="crypt" height="12px" ngModel="isDecrypt" value="decrypt">
     <label for="encrypt">Encrypt</label>
-    <input type="radio" id="decrypt" name="crypt" height="12px">
+    <input type="radio" id="decrypt" name="crypt" height="12px" ngModel="isDecrypt" value="decrypt">
     <label for="decrypt">Decrypt</label>
     <br>
   </div>

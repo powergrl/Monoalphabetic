@@ -6,7 +6,9 @@
   left: 29%;
   position: relative;
   margin-left: 0px;
-  border: 12px solid #6496c8
+  border: 12px solid #6496c8;
+  resize: none;
+  outline: none;
 }
 
 /* The format for the rectangle */
@@ -76,7 +78,6 @@ button {
   width: 12px;
   text-align: center;
   color: transparent;
-  text-shadow: 0 0 0 #000000;
   border: .5px solid black;
 }
 
