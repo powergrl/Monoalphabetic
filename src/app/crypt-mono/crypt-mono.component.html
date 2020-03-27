@@ -1,26 +1,44 @@
 <div>
-  <textarea id="inputrectangle"></textarea>
+  <textarea id="inputrectangle" [(ngModel)]="currText"></textarea>
   <div id="rectangle" align="center">
     SAMPLE TEXTS:
-    <button type="randomPlaintext">Random Plaintext</button>
-    <button type="randomCyphertext">Random Cyphertext</button>
+    <button (click)="onRandomPlainClick()">Random Plaintext</button>
+    <button (click)="onRandomCypherClick()">Random Cyphertext</button>
     <br><br>
     <input type="text" value="PLAINTEXT" id="plainTextStyle" disabled>
-    <span *ngFor="let letter of plainText; index as i">
-      <input type="text" value="{{plainText[i]}}" maxlength="1" ng-model="a"
-      class="input" style="text-shadow:0 0 0 blue">
-    </span>
+    <div *ngIf="isEncrypt" style="display: inline">
+      <span *ngFor="let letter of upperCase; index as i">
+        <input type="text" value="{{otherArr[i]}}" maxlength="1"
+        class="input" style="text-shadow:0 0 0 blue">
+      </span>
+    </div>
+    <div *ngIf="isDecrypt" style="display: inline">
+      <span *ngFor="let letter of upperCase; index as i">
+        <input type="text" value="{{workingArr[i]}}" maxlength="1"
+        class="input" style="text-shadow:0 0 0 blue">
+      </span>
+    </div>
     <br>
     <input type="text" value="cyphertext" id="cypherTextStyle" disabled>
-    <span *ngFor="let letter of cypherText; index as i">
-      <input type="text" value="{{cypherText[i]}}" maxlength="1" ng-model="a"
-      class="input" style="font-color:red" onfocus="this.value=''" style="text-shadow:0 0 0 red">
-    </span>
+    <div *ngIf="isEncrypt" style="display: inline">
+      <span *ngFor="let letter of lowerCase; index as i">
+        <input type="text" value="{{workingArr[i]}}" maxlength="1"
+        class="input" style="font-color:red" style="text-shadow:0 0 0 red">
+      </span>
+    </div>
+    <div *ngIf="isDecrypt" style="display: inline">
+      <span *ngFor="let letter of lowerCase; index as i">
+        <input type="text" value="{{otherArr[i]}}" maxlength="1"
+        class="input" style="font-color:red" style="text-shadow:0 0 0 red">
+      </span>
+    </div>
     <br><br>
-    <input type="radio" id="encrypt" name="crypt" height="12px" ngModel="isDecrypt" value="decrypt">
+    <input type="radio" id="encrypt" name="crypt" height="12px" checked="{{isEncrypt}}" (click)="onEncryptCheck()">
     <label for="encrypt">Encrypt</label>
-    <input type="radio" id="decrypt" name="crypt" height="12px" ngModel="isDecrypt" value="decrypt">
+    <input type="radio" id="decrypt" name="crypt" height="12px" checked="{{isDecrypt}}" (click)="onDecryptCheck()">
     <label for="decrypt">Decrypt</label>
-    <br>
+    <button>Break</button>
   </div>
 </div>
+
+{{workingArr[0]}}
