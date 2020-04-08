@@ -1,5 +1,5 @@
-<div>
-  <textarea id="inputrectangle" [(ngModel)]="currText"></textarea>
+<div *ngIf="isMain">
+  <textarea id="inputrectangle" [(ngModel)]="currText" (keyup)="onKeyText($event)"></textarea>
   <div id="rectangle" align="center">
     SAMPLE TEXTS:
     <button (click)="onRandomPlainClick()">Random Plaintext</button>
@@ -8,28 +8,28 @@
     <input type="text" value="PLAINTEXT" id="plainTextStyle" disabled>
     <div *ngIf="isEncrypt" style="display: inline">
       <span *ngFor="let letter of upperCase; index as i">
-        <input type="text" value="{{otherArr[i]}}" maxlength="1"
-        class="input" style="text-shadow:0 0 0 blue">
+        <input type="text" [(ngModel)]="plaintextArr[i]" maxlength="1"
+        class="input" style="text-shadow:0 0 0 blue" disabled>
       </span>
     </div>
     <div *ngIf="isDecrypt" style="display: inline">
       <span *ngFor="let letter of upperCase; index as i">
-        <input type="text" value="{{workingArr[i]}}" maxlength="1"
-        class="input" style="text-shadow:0 0 0 blue">
+        <input type="text" [(ngModel)]="workingDecrypt[i]" maxlength="1"
+        class="input" style="text-shadow:0 0 0 blue" (keyup)="onKeyDecrypt($event, i)">
       </span>
     </div>
     <br>
     <input type="text" value="cyphertext" id="cypherTextStyle" disabled>
     <div *ngIf="isEncrypt" style="display: inline">
       <span *ngFor="let letter of lowerCase; index as i">
-        <input type="text" value="{{workingArr[i]}}" maxlength="1"
-        class="input" style="font-color:red" style="text-shadow:0 0 0 red">
+        <input type="text" [(ngModel)]="workingEncrypt[i]" maxlength="1"
+        class="input" style="font-color:red" style="text-shadow:0 0 0 red" (keyup)="onKeyEncrypt($event, i)">
       </span>
     </div>
     <div *ngIf="isDecrypt" style="display: inline">
       <span *ngFor="let letter of lowerCase; index as i">
-        <input type="text" value="{{otherArr[i]}}" maxlength="1"
-        class="input" style="font-color:red" style="text-shadow:0 0 0 red">
+        <input type="text" [(ngModel)]="cypherArr[i]" maxlength="1"
+        class="input" style="font-color:red" style="text-shadow:0 0 0 red" disabled>
       </span>
     </div>
     <br><br>
@@ -37,8 +37,144 @@
     <label for="encrypt">Encrypt</label>
     <input type="radio" id="decrypt" name="crypt" height="12px" checked="{{isDecrypt}}" (click)="onDecryptCheck()">
     <label for="decrypt">Decrypt</label>
-    <button>Break</button>
+    <button (click)="onBreakClick()">Break</button>
   </div>
 </div>
-
-{{workingArr[0]}}
+<div *ngIf="isBreak" id="breakRectangle">
+  <div align="center">
+    <br>
+    <label style="font-size: 16px">Enter word:
+      <input (keyup)="onKeySearch($event)" [(ngModel)]="searchTerm">
+    </label>
+    <button style="height: 22px" (click)="onSearch()">Search</button>
+    <label style="font-size: 16px"> Show All:
+      <input type="radio" name="show" checked={{showAllYes}} (click)="onYesClick()">Yes
+      <input type="radio" name="show" checked={{showAllNo}} (click) = "onNoClick()">No
+    </label>
+    <br>
+    <span style="font-size: 16px">{{status}}</span>
+    <br>
+    <span style="font-size: 16px; float: left; margin-left: 15px">Match</span>
+    <span *ngIf="sortByChi">
+      <button style="height: 30px; width: 150px" disabled>Chi square</button>
+      <button style="height: 30px; width: 150px" (click)="onFreqClick()">Frequency</button>
+    </span>
+    <span *ngIf="sortByFreq">
+      <button style="height: 30px; width: 150px" (click)="onChiClick()">Chi square</button>
+      <button style="height: 30px; width: 150px" disabled>Frequency</button>
+    </span>
+    <span style="font-size: 16px; float: right; margin-right: 15px">Conflicts</span>
+  </div>
+  <br>
+  <span *ngIf="possibleTerms[listIdx]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list0}}" (click)="onList0Click()"> {{possibleTerms[listIdx]}}
+    <span id="chiFormat">{{chiResults[listIdx]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <br><br>
+  <span *ngIf="possibleTerms[listIdx + 1]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list1}}" (click)="onList1Click()"> {{possibleTerms[listIdx + 1]}}
+    <span id="chiFormat">{{chiResults[listIdx + 1]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx + 1]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx + 1]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <br><br>
+  <span *ngIf="possibleTerms[listIdx + 2]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list2}}" (click)="onList2Click()"> {{possibleTerms[listIdx + 2]}}
+    <span id="chiFormat">{{chiResults[listIdx + 2]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx + 2]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx + 2]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <br><br>
+  <span *ngIf="possibleTerms[listIdx + 3]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list3}}" (click)="onList3Click()"> {{possibleTerms[listIdx + 3]}}
+    <span id="chiFormat">{{chiResults[listIdx + 3]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx + 3]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx + 3]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <br><br>
+  <span *ngIf="possibleTerms[listIdx + 4]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list4}}" (click)="onList4Click()"> {{possibleTerms[listIdx + 4]}}
+    <span id="chiFormat">{{chiResults[listIdx + 4]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx + 4]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx + 4]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <br><br>
+  <span *ngIf="possibleTerms[listIdx + 5]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list5}}" (click)="onList5Click()"> {{possibleTerms[listIdx + 5]}}
+    <span id="chiFormat">{{chiResults[listIdx + 5]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx + 5]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx + 5]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <br><br>
+  <span *ngIf="possibleTerms[listIdx + 6]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list6}}" (click)="onList6Click()"> {{possibleTerms[listIdx + 6]}}
+    <span id="chiFormat">{{chiResults[listIdx + 6]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx + 6]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx + 6]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <br><br>
+  <span *ngIf="possibleTerms[listIdx + 7]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list7}}" (click)="onList7Click()"> {{possibleTerms[listIdx + 7]}}
+    <span id="chiFormat">{{chiResults[listIdx + 7]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx + 7]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx + 7]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <br><br>
+  <span *ngIf="possibleTerms[listIdx + 8]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list8}}" (click)="onList8Click()"> {{possibleTerms[listIdx + 8]}}
+    <span id="chiFormat">{{chiResults[listIdx + 8]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx + 8]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx + 8]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <br><br>
+  <span *ngIf="possibleTerms[listIdx + 9]" style="font-size: 14px">
+    <input type="radio" name="list" value="{{list9}}" (click)="onList9Click()"> {{possibleTerms[listIdx + 9]}}
+    <span id="chiFormat">{{chiResults[listIdx + 9]}}</span>
+    <span id="freqFormat">{{freqResults[listIdx + 9]}}</span>
+  </span>
+  <span *ngIf="!possibleTerms[listIdx + 9]" style="font-size: 14px">
+    <input type="radio" name="list" disabled>
+  </span>
+  <div *ngIf="hasNext10 && !hasPrev10" align="center">
+    <button disabled>Previous 10</button>
+    <button (click)="onNextClick()">Next 10</button>
+    <button (click)="onOkayClick()">Okay</button>
+  </div>
+  <div *ngIf="hasNext10 && hasPrev10" align="center">
+    <button (click)="onPrevClick()">Previous 10</button>
+    <button (click)="onNextClick()">Next 10</button>
+    <button (click)="onOkayClick()">Okay</button>
+  </div>
+  <div *ngIf="!hasNext10 && hasPrev10" align="center">
+    <button (click)="onPrevClick()">Previous 10</button>
+    <button disabled>Next 10</button>
+    <button (click)="onOkayClick()">Okay</button>
+  </div>
+  <div *ngIf="!hasNext10 && !hasPrev10" align="center">
+    <button disabled>Previous 10</button>
+    <button disabled>Next 10</button>
+    <button (click)="onOkayClick()">Okay</button>
+  </div>
+</div>
+text: {{text}}<br>
+currText:{{currText}}

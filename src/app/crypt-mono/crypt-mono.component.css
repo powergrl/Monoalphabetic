@@ -22,6 +22,18 @@
   font-size: 12px;
 }
 
+/* The format for the break rectangle */
+#breakRectangle {
+  width: 628px;
+  margin-top: 4px;
+  height: 453px;
+  background: #6496c8;
+  left: 29%;
+  position: relative;
+  bottom: 4px;
+  font-size: 12px;
+}
+
 /* The format for the words PLAINTEXT */
 #plainTextStyle {
   color: blue;
@@ -40,6 +52,22 @@
   width: 65px;
   text-align: center;
   border: .5px solid black;
+}
+
+#chiFormat {
+  font-size: 14px;
+  align: center;
+  display: inline;
+  font-style: normal;
+  margin-left: 175px;
+}
+
+#freqFormat {
+  font-size: 14px;
+  align: center;
+  display: inline;
+  font-style: normal;
+  margin-left: 150px;
 }
 
 /* Use h2 for actual words */
