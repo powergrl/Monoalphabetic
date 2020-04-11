@@ -23,6 +23,8 @@ export class CryptMonoComponent implements OnInit {
   text;
   // Current text
   currText;
+  // Original text
+  originalText;
   // Random index for creating scrambled Array
   randomIdx;
   scrambledArr;
@@ -79,6 +81,7 @@ export class CryptMonoComponent implements OnInit {
   ngOnInit() {
     this.text = '';
     this.currText = '';
+    this.originalText = '';
     this.isEncrypt = "";
     this.isDecrypt = "checked";
     this.isMain = "true";
@@ -380,7 +383,7 @@ export class CryptMonoComponent implements OnInit {
         this.cyphertextFrequency[25]++;
       }
     }
-
+    this.originalText = "" + this.text;
   }
 
   onEncryptCheck() {
@@ -841,60 +844,130 @@ export class CryptMonoComponent implements OnInit {
     this.chosenWord = "";
     if(this.list0) {
       this.chosenWord = this.possibleTerms[this.listIdx];
+      if(this.conflictResults[this.listIdx].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx].charAt(i))] = this.searchTerm.charAt(i);
       }
     }
     if(this.list1) {
       this.chosenWord = this.possibleTerms[this.listIdx + 1];
+      if(this.conflictResults[this.listIdx + 1].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx + 1].charAt(i))] = this.searchTerm.charAt(i);
       }
     }
     if(this.list2) {
       this.chosenWord = this.possibleTerms[this.listIdx + 2];
+      if(this.conflictResults[this.listIdx + 2].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx + 2].charAt(i))] = this.searchTerm.charAt(i);
       }
     }
     if(this.list3) {
       this.chosenWord = this.possibleTerms[this.listIdx + 3];
+      if(this.conflictResults[this.listIdx + 3].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx + 3].charAt(i))] = this.searchTerm.charAt(i);
       }
     }
     if(this.list4) {
       this.chosenWord = this.possibleTerms[this.listIdx + 4];
+      if(this.conflictResults[this.listIdx + 4].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx + 4].charAt(i))] = this.searchTerm.charAt(i);
       }
     }
     if(this.list5) {
       this.chosenWord = this.possibleTerms[this.listIdx + 5];
+      if(this.conflictResults[this.listIdx + 5].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx + 5].charAt(i))] = this.searchTerm.charAt(i);
       }
     }
     if(this.list6) {
       this.chosenWord = this.possibleTerms[this.listIdx + 6];
+      if(this.conflictResults[this.listIdx + 6].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx + 6].charAt(i))] = this.searchTerm.charAt(i);
       }
     }
     if(this.list7) {
       this.chosenWord = this.possibleTerms[this.listIdx + 7];
+      if(this.conflictResults[this.listIdx + 7].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx + 7].charAt(i))] = this.searchTerm.charAt(i);
       }
     }
     if(this.list8) {
       this.chosenWord = this.possibleTerms[this.listIdx + 8];
+      if(this.conflictResults[this.listIdx + 8].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx + 8].charAt(i))] = this.searchTerm.charAt(i);
       }
     }
     if(this.list9) {
       this.chosenWord = this.possibleTerms[this.listIdx + 9];
+      if(this.conflictResults[this.listIdx + 9].length > 0) {
+        for(var m = 0; m < this.chosenWord.length; m++) {
+          if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
+            this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
+          }
+        }
+      }
       for(var i = 0; i < this.searchTerm.length; i++) {
         this.workingDecrypt[this.cypherArr.indexOf(this.possibleTerms[this.listIdx + 9].charAt(i))] = this.searchTerm.charAt(i);
       }
@@ -981,11 +1054,119 @@ export class CryptMonoComponent implements OnInit {
       }
     }
     this.currText = '';
-    for(var i = 1; i <= this.text.length; i++) {
-      this.currText += this.text.charAt(i - 1);
-      if(i % 5 == 0) {
+    for(var k = 1; k <= this.text.length; k++) {
+      this.currText += this.text.charAt(k - 1);
+      if(k % 5 == 0) {
         this.currText += ' ';
       }
+    }
+  }
+
+  replaceForList(letter, i) {
+    if(letter == 'A') {
+      this.currText = this.currText.replace(/A/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/A/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'B') {
+      this.currText = this.currText.replace(/B/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/B/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'C') {
+      this.currText = this.currText.replace(/C/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/C/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'D') {
+      this.currText = this.currText.replace(/D/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/D/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'E') {
+      this.currText = this.currText.replace(/E/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/E/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'F') {
+      this.currText = this.currText.replace(/F/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/F/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'G') {
+      this.currText = this.currText.replace(/G/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/G/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'H') {
+      this.currText = this.currText.replace(/H/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/H/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'I') {
+      this.currText = this.currText.replace(/I/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/I/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'J') {
+      this.currText = this.currText.replace(/J/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/J/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'K') {
+      this.currText = this.currText.replace(/K/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/K/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'L') {
+      this.currText = this.currText.replace(/L/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/L/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'M') {
+      this.currText = this.currText.replace(/M/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/M/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'N') {
+      this.currText = this.currText.replace(/N/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/N/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'O') {
+      this.currText = this.currText.replace(/O/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/O/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'P') {
+      this.currText = this.currText.replace(/P/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/P/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'Q') {
+      this.currText = this.currText.replace(/Q/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/Q/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'R') {
+      this.currText = this.currText.replace(/R/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/R/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'S') {
+      this.currText = this.currText.replace(/S/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/S/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'T') {
+      this.currText = this.currText.replace(/T/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/T/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'U') {
+      this.currText = this.currText.replace(/U/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/U/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'V') {
+      this.currText = this.currText.replace(/V/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/V/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'W') {
+      this.currText = this.currText.replace(/W/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/W/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'X') {
+      this.currText = this.currText.replace(/X/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/X/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'Y') {
+      this.currText = this.currText.replace(/Y/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/Y/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
+    } else if(letter == 'Z') {
+      this.currText = this.currText.replace(/Z/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.text = this.text.replace(/Z/g, this.cypherArr[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))]);
+      this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(i))] = '';
     }
   }
 
@@ -1017,16 +1198,16 @@ export class CryptMonoComponent implements OnInit {
     this.possibleTerms = [];
     this.freqResults = [];
     this.chiResults = [];
+    this.conflictResults = [];
     for(var j = 0; j < m; j++) {
       this.freqResults[j] = 0;
       this.chiResults[j] = 0.0;
-      var tmp = this.text.substring(j, j + n);
+      var tmp = this.originalText.substring(j, j + n);
       if(this.equalArray(this.convertToArray(tmp), wordArray)) {
-        ind = this.text.indexOf(tmp);
+        ind = this.originalText.indexOf(tmp);
         this.conflictResults[j] = this.conflict(tmp);
-        this.status = this.conflict(tmp);
-        if((ind == j) && (this.showAllYes || this.conflict(tmp) == "")) {
-          this.possibleTerms[this.possibleTermIdx] = this.text.substring(j, j + n);
+        if((ind == j) && (this.showAllYes || this.conflictResults[j] == "")) {
+          this.possibleTerms[this.possibleTermIdx] = this.originalText.substring(j, j + n);
           this.possibleTermIdx++;
           this.chiResults[j] = this.chiSquare(tmp);
         }
@@ -1054,7 +1235,7 @@ export class CryptMonoComponent implements OnInit {
       this.possibleTerms = this.possibleTerms.reverse();
     }
     if(this.possibleTerms.length == 0) {
-      this.status = "No matches found."
+      this.status = "No matches found.";
     } else {
       this.status = "Search Results " + (this.listIdx + 1) + "-" + (this.listIdx + 10) + " (of " + this.possibleTerms.length + ")";
     }
@@ -1096,12 +1277,12 @@ export class CryptMonoComponent implements OnInit {
       m = this.uniqueLetters[i];
       x = this.searchTerm.charAt(m);
       y = str.charAt(m);
-      n = this.workingEncrypt.indexOf(x);
-      if(n >= 0) {
+      n = this.workingDecrypt.indexOf(x);
+      if(n >= 0 && this.workingDecrypt[n] != '') {
         out = out + "*";
       }
       n = this.cypherArr.indexOf(y);
-      if(this.workingEncrypt[n] != ' ') {
+      if(n >= 0 && this.workingDecrypt[n] != '') {
         out = out + "*";
       }
     }
@@ -1163,7 +1344,7 @@ export class CryptMonoComponent implements OnInit {
     for(var j = 0.0; j < n; j++) {
       tmp += Math.pow((this.etotal * cstats[j] - ctotal * this.estats[j]), 2.0) / this.estats[j];
     }
-    return (1000.0 * tmp / (ctotal * this.etotal)) / 1000.0;
+    return parseFloat(((1000.0 * tmp / (ctotal * this.etotal)) / 1000.0).toFixed(3));
   }
 
   onNextClick() {

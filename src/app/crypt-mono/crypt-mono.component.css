@@ -56,18 +56,23 @@
 
 #chiFormat {
   font-size: 14px;
-  align: center;
   display: inline;
   font-style: normal;
-  margin-left: 175px;
+  margin: 150px;
 }
 
 #freqFormat {
   font-size: 14px;
-  align: center;
   display: inline;
   font-style: normal;
-  margin-left: 150px;
+  margin: 50px;
+}
+
+#conflictFormat {
+  font-size: 14px;
+  display: inline;
+  font-style: normal;
+  margin-left: 100px;
 }
 
 /* Use h2 for actual words */
