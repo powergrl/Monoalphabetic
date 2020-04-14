@@ -66,105 +66,173 @@
     <span style="font-size: 16px; float: right; margin-right: 15px">Conflicts</span>
   </div>
   <br>
-  <span *ngIf="possibleTerms[listIdx]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list0}}" (click)="onList0Click()"> {{possibleTerms[listIdx]}}
-    <span id="chiFormat">{{chiResults[listIdx]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
-  <br><br>
-  <span *ngIf="possibleTerms[listIdx + 1]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list1}}" (click)="onList1Click()"> {{possibleTerms[listIdx + 1]}}
-    <span id="chiFormat">{{chiResults[listIdx + 1]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx + 1]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx + 1]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx + 1]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
-  <br><br>
-  <span *ngIf="possibleTerms[listIdx + 2]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list2}}" (click)="onList2Click()"> {{possibleTerms[listIdx + 2]}}
-    <span id="chiFormat">{{chiResults[listIdx + 2]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx + 2]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx + 2]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx + 2]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
-  <br><br>
-  <span *ngIf="possibleTerms[listIdx + 3]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list3}}" (click)="onList3Click()"> {{possibleTerms[listIdx + 3]}}
-    <span id="chiFormat">{{chiResults[listIdx + 3]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx + 3]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx + 3]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx + 3]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
-  <br><br>
-  <span *ngIf="possibleTerms[listIdx + 4]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list4}}" (click)="onList4Click()"> {{possibleTerms[listIdx + 4]}}
-    <span id="chiFormat">{{chiResults[listIdx + 4]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx + 4]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx + 4]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx + 4]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
-  <br><br>
-  <span *ngIf="possibleTerms[listIdx + 5]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list5}}" (click)="onList5Click()"> {{possibleTerms[listIdx + 5]}}
-    <span id="chiFormat">{{chiResults[listIdx + 5]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx + 5]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx + 5]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx + 5]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
-  <br><br>
-  <span *ngIf="possibleTerms[listIdx + 6]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list6}}" (click)="onList6Click()"> {{possibleTerms[listIdx + 6]}}
-    <span id="chiFormat">{{chiResults[listIdx + 6]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx + 6]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx + 6]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx + 6]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
-  <br><br>
-  <span *ngIf="possibleTerms[listIdx + 7]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list7}}" (click)="onList7Click()"> {{possibleTerms[listIdx + 7]}}
-    <span id="chiFormat">{{chiResults[listIdx + 7]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx + 7]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx + 7]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx + 7]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
-  <br><br>
-  <span *ngIf="possibleTerms[listIdx + 8]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list8}}" (click)="onList8Click()"> {{possibleTerms[listIdx + 8]}}
-    <span id="chiFormat">{{chiResults[listIdx + 8]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx + 8]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx + 8]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx + 8]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
-  <br><br>
-  <span *ngIf="possibleTerms[listIdx + 9]" style="font-size: 14px">
-    <input type="radio" name="list" value="{{list9}}" (click)="onList9Click()"> {{possibleTerms[listIdx + 9]}}
-    <span id="chiFormat">{{chiResults[listIdx + 9]}}</span>
-    <span id="freqFormat">{{freqResults[listIdx + 9]}}</span>
-    <span id="conflictFormat">{{conflictResults[listIdx + 9]}}</span>
-  </span>
-  <span *ngIf="!possibleTerms[listIdx + 9]" style="font-size: 14px">
-    <input type="radio" name="list" disabled>
-  </span>
+  <table style="width: 70%">
+    <tr *ngIf="possibleTerms[listIdx]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list0}}" (click)="onList0Click()">
+        {{possibleTerms[listIdx]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx]" style="font-size: 14px">
+      <td  class="col-sm-4">
+        <input type="radio" name="list" disabled>
+      </td>
+    </tr>
+
+    <br>
+
+    <tr *ngIf="possibleTerms[listIdx + 1]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list1}}" (click)="onList1Click()">
+        {{possibleTerms[listIdx + 1]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx + 1]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx + 1]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx + 1]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx + 1]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" disabled>
+      </td>
+    </tr>
+
+    <br>
+
+    <tr *ngIf="possibleTerms[listIdx + 2]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list2}}" (click)="onList2Click()">
+        {{possibleTerms[listIdx + 2]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx + 2]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx + 2]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx + 2]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx + 2]" style="font-size: 14px">
+      <input type="radio" name="list" disabled>
+    </tr>
+
+    <br>
+
+    <tr *ngIf="possibleTerms[listIdx + 3]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list3}}" (click)="onList3Click()">
+        {{possibleTerms[listIdx + 3]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx + 3]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx + 3]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx + 3]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx + 3]" style="font-size: 14px">
+      <td>
+        <input type="radio" name="list" disabled>
+      </td>
+    </tr>
+
+    <br>
+
+    <tr *ngIf="possibleTerms[listIdx + 4]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list4}}" (click)="onList4Click()">
+        {{possibleTerms[listIdx + 4]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx + 4]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx + 4]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx + 4]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx + 4]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" disabled>
+      </td>
+    </tr>
+
+    <br>
+
+    <tr *ngIf="possibleTerms[listIdx + 5]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list5}}" (click)="onList5Click()">
+        {{possibleTerms[listIdx + 5]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx + 5]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx + 5]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx + 5]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx + 5]" style="font-size: 14px">
+      <td>
+        <input type="radio" name="list" disabled>
+      </td>
+    </tr>
+
+    <br>
+
+    <tr *ngIf="possibleTerms[listIdx + 6]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list6}}" (click)="onList6Click()">
+        {{possibleTerms[listIdx + 6]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx + 6]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx + 6]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx + 6]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx + 6]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" disabled>
+      </td>
+    </tr>
+
+    <br>
+
+    <tr *ngIf="possibleTerms[listIdx + 7]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list7}}" (click)="onList7Click()">
+        {{possibleTerms[listIdx + 7]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx + 7]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx + 7]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx + 7]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx + 7]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" disabled>
+      </td>
+    </tr>
+
+    <br>
+
+    <tr *ngIf="possibleTerms[listIdx + 8]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list8}}" (click)="onList8Click()">
+        {{possibleTerms[listIdx + 8]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx + 8]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx + 8]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx + 8]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx + 8]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" disabled>
+      </td>
+    </tr>
+
+    <br>
+
+    <tr *ngIf="possibleTerms[listIdx + 9]" style="font-size: 14px">
+      <td class="col-sm-4">
+        <input type="radio" name="list" value="{{list9}}" (click)="onList9Click()">
+        {{possibleTerms[listIdx + 9]}}
+      </td>
+      <td class="col-sm-4">{{chiResults[listIdx + 9]}}</td>
+      <td class="col-sm-4">{{freqResults[listIdx + 9]}}</td>
+      <td class="col-sm-4">{{conflictResults[listIdx + 9]}}</td>
+    </tr>
+    <tr *ngIf="!possibleTerms[listIdx + 9]" style="font-size: 14px">
+      <td>
+        <input type="radio" name="list" disabled>
+      </td>
+    </tr>
+  </table>
   <div *ngIf="hasNext10 && !hasPrev10" align="center">
     <button disabled>Previous 10</button>
     <button (click)="onNextClick()">Next 10</button>
@@ -186,8 +254,6 @@
     <button (click)="onOkayClick()">Okay</button>
   </div>
 </div>
-originalText: {{originalText}}<br>
-text: {{text}}<br>
-currText:{{currText}}<br>
-chosenWord: {{chosenWord}}<br>
-status: {{status}}
+workingDecrypt: {{workingDecrypt}}<br>
+status: {{status}}<br>
+tempDecrypt: {{tempDecrypt}}

@@ -8,7 +8,6 @@ import { RANDOMPLAINTEXT, UPPERCASE, LOWERCASE, TMPARR, FREQUENCIES } from '../s
 })
 
 export class CryptMonoComponent implements OnInit {
-  loc;
   // Alphabet + blank arrays
   upperCase = UPPERCASE;
   lowerCase = LOWERCASE;
@@ -34,6 +33,8 @@ export class CryptMonoComponent implements OnInit {
   // Array for the boxes
   workingEncrypt;
   workingDecrypt;
+  tempEncrypt;
+  tempDecrypt;
   cypherArr;
   plaintextArr;
   // Boolean for Panel
@@ -88,6 +89,8 @@ export class CryptMonoComponent implements OnInit {
     this.isBreak = "";
     this.workingEncrypt = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
     this.workingDecrypt = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+    this.tempEncrypt = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+    this.tempEncrypt = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
     this.cypherArr = this.lowerCase;
     this.plaintextArr = this.upperCase;
     this.status = "Ready";
@@ -108,6 +111,7 @@ export class CryptMonoComponent implements OnInit {
     this.list9 = "";
     this.sortByChi = true;
     this.sortByFreq = false;
+    this.plaintextFrequency = FREQUENCIES;
   }
 
   /* When random plaintext button is clicked */
@@ -139,10 +143,12 @@ export class CryptMonoComponent implements OnInit {
     this.isDecrypt = "checked";
     this.workingDecrypt = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
     this.workingEncrypt = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+    this.tempDecrypt = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+    this.tempEncrypt = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
     this.cypherArr = this.lowerCase;
     this.randomPlaintextIdx = Math.floor(Math.random() * (this.randomPlaintext.length));
     this.text = this.randomPlaintext[this.randomPlaintextIdx];
-    this.plaintextFrequency = [];
+    this.plaintextFrequency = FREQUENCIES;
     this.cyphertextFrequency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
     for(var i = 1; i <= this.text.length; i++) {
@@ -324,10 +330,6 @@ export class CryptMonoComponent implements OnInit {
     this.text = this.text.replace(/Y/g, this.scrambledArr[24]);
     this.text = this.text.replace(/Z/g, this.scrambledArr[25]);
 
-    for(var l = 0; l < 26; l++) {
-      this.plaintextFrequency[l] = Math.ceil(this.text.length * FREQUENCIES[l]);
-    }
-
     for(var m = 0; m < this.currText.length; m++) {
       if(this.currText.charAt(m) == 'a') {
         this.cyphertextFrequency[0]++;
@@ -397,207 +399,289 @@ export class CryptMonoComponent implements OnInit {
   }
 
   onKeyDecrypt(event: any, i) {
-    if(event.keyCode < 65 || event.keyCode > 90) {
-      return;
-    }
-
-    var letter = event.target.value;
-    this.workingDecrypt[i] = '';
-    /* Check first if the key exists */
-    var idx = this.workingDecrypt.indexOf(event.target.value.toUpperCase());
-    if(idx >= 0) {
-      if(this.workingDecrypt[idx] == 'A') {
-        this.currText = this.currText.replace(/A/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/A/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'B') {
-        this.currText = this.currText.replace(/B/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/B/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'C') {
-        this.currText = this.currText.replace(/C/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/C/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'D') {
-        this.currText = this.currText.replace(/D/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/D/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'E') {
-        this.currText = this.currText.replace(/E/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/E/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'F') {
-        this.currText = this.currText.replace(/F/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/F/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'G') {
-        this.currText = this.currText.replace(/G/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/G/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'H') {
-        this.currText = this.currText.replace(/H/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/H/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'I') {
-        this.currText = this.currText.replace(/I/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/I/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'J') {
-        this.currText = this.currText.replace(/J/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/J/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'K') {
-        this.currText = this.currText.replace(/K/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/K/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'L') {
-        this.currText = this.currText.replace(/L/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/L/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'M') {
-        this.currText = this.currText.replace(/M/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/M/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'N') {
-        this.currText = this.currText.replace(/N/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/N/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'O') {
-        this.currText = this.currText.replace(/O/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/O/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'P') {
-        this.currText = this.currText.replace(/P/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/P/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'Q') {
-        this.currText = this.currText.replace(/Q/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/Q/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'R') {
-        this.currText = this.currText.replace(/R/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/R/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'S') {
-        this.currText = this.currText.replace(/S/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/S/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'T') {
-        this.currText = this.currText.replace(/T/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/T/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'U') {
-        this.currText = this.currText.replace(/U/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/U/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'V') {
-        this.currText = this.currText.replace(/V/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/V/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'W') {
-        this.currText = this.currText.replace(/W/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/W/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'X') {
-        this.currText = this.currText.replace(/X/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/X/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'Y') {
-        this.currText = this.currText.replace(/Y/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/Y/g, this.cypherArr[idx]);
-      } else if(this.workingDecrypt[idx] == 'Z') {
-        this.currText = this.currText.replace(/Z/g, this.cypherArr[idx]);
-        this.text = this.text.replace(/Z/g, this.cypherArr[idx]);
+    if(event.keyCode == 8 && this.tempDecrypt[i]) {
+      if(this.tempDecrypt[i] == 'A') {
+        this.currText = this.currText.replace(/A/g, this.cypherArr[i]);
+        this.text = this.text.replace(/A/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'B') {
+        this.currText = this.currText.replace(/B/g, this.cypherArr[i]);
+        this.text = this.text.replace(/B/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'C') {
+        this.currText = this.currText.replace(/C/g, this.cypherArr[i]);
+        this.text = this.text.replace(/C/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'D') {
+        this.currText = this.currText.replace(/D/g, this.cypherArr[i]);
+        this.text = this.text.replace(/D/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'E') {
+        this.currText = this.currText.replace(/E/g, this.cypherArr[i]);
+        this.text = this.text.replace(/E/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'F') {
+        this.currText = this.currText.replace(/F/g, this.cypherArr[i]);
+        this.text = this.text.replace(/F/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'G') {
+        this.currText = this.currText.replace(/G/g, this.cypherArr[i]);
+        this.text = this.text.replace(/G/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'H') {
+        this.currText = this.currText.replace(/H/g, this.cypherArr[i]);
+        this.text = this.text.replace(/H/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'I') {
+        this.currText = this.currText.replace(/I/g, this.cypherArr[i]);
+        this.text = this.text.replace(/I/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'J') {
+        this.currText = this.currText.replace(/J/g, this.cypherArr[i]);
+        this.text = this.text.replace(/J/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'K') {
+        this.currText = this.currText.replace(/K/g, this.cypherArr[i]);
+        this.text = this.text.replace(/K/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'L') {
+        this.currText = this.currText.replace(/L/g, this.cypherArr[i]);
+        this.text = this.text.replace(/L/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'M') {
+        this.currText = this.currText.replace(/M/g, this.cypherArr[i]);
+        this.text = this.text.replace(/M/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'N') {
+        this.currText = this.currText.replace(/N/g, this.cypherArr[i]);
+        this.text = this.text.replace(/N/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'O') {
+        this.currText = this.currText.replace(/O/g, this.cypherArr[i]);
+        this.text = this.text.replace(/O/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'P') {
+        this.currText = this.currText.replace(/P/g, this.cypherArr[i]);
+        this.text = this.text.replace(/P/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'Q') {
+        this.currText = this.currText.replace(/Q/g, this.cypherArr[i]);
+        this.text = this.text.replace(/Q/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'R') {
+        this.currText = this.currText.replace(/R/g, this.cypherArr[i]);
+        this.text = this.text.replace(/R/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'S') {
+        this.currText = this.currText.replace(/S/g, this.cypherArr[i]);
+        this.text = this.text.replace(/S/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'T') {
+        this.currText = this.currText.replace(/T/g, this.cypherArr[i]);
+        this.text = this.text.replace(/T/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'U') {
+        this.currText = this.currText.replace(/U/g, this.cypherArr[i]);
+        this.text = this.text.replace(/U/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'V') {
+        this.currText = this.currText.replace(/V/g, this.cypherArr[i]);
+        this.text = this.text.replace(/V/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'W') {
+        this.currText = this.currText.replace(/W/g, this.cypherArr[i]);
+        this.text = this.text.replace(/W/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'X') {
+        this.currText = this.currText.replace(/X/g, this.cypherArr[i]);
+        this.text = this.text.replace(/X/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'Y') {
+        this.currText = this.currText.replace(/Y/g, this.cypherArr[i]);
+        this.text = this.text.replace(/Y/g, this.cypherArr[i]);
+      } else if(this.tempDecrypt[i] == 'Z') {
+        this.currText = this.currText.replace(/Z/g, this.cypherArr[i]);
+        this.text = this.text.replace(/Z/g, this.cypherArr[i]);
       }
-      this.workingDecrypt[idx] = '';
+      this.tempDecrypt[i] = '';
     }
-    this.workingDecrypt[i] = letter;
-    /* Set the value on the opposite array */
-    this.workingEncrypt[this.cypherArr.indexOf(event.target.value.toLowerCase())] = this.cypherArr[i];
-    /* Change the value to a capital letter */
-    this.workingDecrypt[i] = event.target.value.toUpperCase();
-    event.target.value = event.target.value.toUpperCase();
-    /* Manually check which value it is */
-    if(this.cypherArr[i] == 'a') {
-      this.currText = this.currText.replace(/a/g, event.target.value);
-      this.text = this.text.replace(/a/g, event.target.value);
+    if(event.keyCode >= 65 && event.keyCode <= 90) {
+      var letter = event.target.value;
+      this.workingDecrypt[i] = '';
+      /* Check first if the key exists */
+      var idx = this.workingDecrypt.indexOf(event.target.value.toUpperCase());
+      if(idx >= 0) {
+        if(this.workingDecrypt[idx] == 'A') {
+          this.currText = this.currText.replace(/A/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/A/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'B') {
+          this.currText = this.currText.replace(/B/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/B/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'C') {
+          this.currText = this.currText.replace(/C/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/C/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'D') {
+          this.currText = this.currText.replace(/D/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/D/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'E') {
+          this.currText = this.currText.replace(/E/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/E/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'F') {
+          this.currText = this.currText.replace(/F/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/F/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'G') {
+          this.currText = this.currText.replace(/G/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/G/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'H') {
+          this.currText = this.currText.replace(/H/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/H/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'I') {
+          this.currText = this.currText.replace(/I/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/I/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'J') {
+          this.currText = this.currText.replace(/J/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/J/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'K') {
+          this.currText = this.currText.replace(/K/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/K/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'L') {
+          this.currText = this.currText.replace(/L/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/L/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'M') {
+          this.currText = this.currText.replace(/M/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/M/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'N') {
+          this.currText = this.currText.replace(/N/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/N/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'O') {
+          this.currText = this.currText.replace(/O/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/O/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'P') {
+          this.currText = this.currText.replace(/P/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/P/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'Q') {
+          this.currText = this.currText.replace(/Q/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/Q/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'R') {
+          this.currText = this.currText.replace(/R/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/R/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'S') {
+          this.currText = this.currText.replace(/S/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/S/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'T') {
+          this.currText = this.currText.replace(/T/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/T/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'U') {
+          this.currText = this.currText.replace(/U/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/U/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'V') {
+          this.currText = this.currText.replace(/V/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/V/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'W') {
+          this.currText = this.currText.replace(/W/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/W/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'X') {
+          this.currText = this.currText.replace(/X/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/X/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'Y') {
+          this.currText = this.currText.replace(/Y/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/Y/g, this.cypherArr[idx]);
+        } else if(this.workingDecrypt[idx] == 'Z') {
+          this.currText = this.currText.replace(/Z/g, this.cypherArr[idx]);
+          this.text = this.text.replace(/Z/g, this.cypherArr[idx]);
+        }
+        this.workingDecrypt[idx] = '';
+      }
+      this.workingDecrypt[i] = letter;
+      /* Set the value on the opposite array */
+      this.workingEncrypt[this.cypherArr.indexOf(event.target.value.toLowerCase())] = this.cypherArr[i];
+      /* Change the value to a capital letter */
+      this.workingDecrypt[i] = event.target.value.toUpperCase();
+      event.target.value = event.target.value.toUpperCase();
+      /* Manually check which value it is */
+      if(this.cypherArr[i] == 'a') {
+        this.currText = this.currText.replace(/a/g, event.target.value);
+        this.text = this.text.replace(/a/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'b') {
+        this.currText = this.currText.replace(/b/g, event.target.value);
+        this.text = this.text.replace(/b/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'c') {
+        this.currText = this.currText.replace(/c/g, event.target.value);
+        this.text = this.text.replace(/c/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'd') {
+        this.currText = this.currText.replace(/d/g, event.target.value);
+        this.text = this.text.replace(/d/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'e') {
+        this.currText = this.currText.replace(/e/g, event.target.value);
+        this.text = this.text.replace(/e/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'f') {
+        this.currText = this.currText.replace(/f/g, event.target.value);
+        this.text = this.text.replace(/f/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'g') {
+        this.currText = this.currText.replace(/g/g, event.target.value);
+        this.text = this.text.replace(/g/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'h') {
+        this.currText = this.currText.replace(/h/g, event.target.value);
+        this.text = this.text.replace(/h/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'i') {
+        this.currText = this.currText.replace(/i/g, event.target.value);
+        this.text = this.text.replace(/i/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'j') {
+        this.currText = this.currText.replace(/j/g, event.target.value);
+        this.text = this.text.replace(/j/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'k') {
+        this.currText = this.currText.replace(/k/g, event.target.value);
+        this.text = this.text.replace(/k/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'l') {
+        this.currText = this.currText.replace(/l/g, event.target.value);
+        this.text = this.text.replace(/l/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'm') {
+        this.currText = this.currText.replace(/m/g, event.target.value);
+        this.text = this.text.replace(/m/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'n') {
+        this.currText = this.currText.replace(/n/g, event.target.value);
+        this.text = this.text.replace(/n/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'o') {
+        this.currText = this.currText.replace(/o/g, event.target.value);
+        this.text = this.text.replace(/o/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'p') {
+        this.currText = this.currText.replace(/p/g, event.target.value);
+        this.text = this.text.replace(/p/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'q') {
+        this.currText = this.currText.replace(/q/g, event.target.value);
+        this.text = this.text.replace(/q/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'r') {
+        this.currText = this.currText.replace(/r/g, event.target.value);
+        this.text = this.text.replace(/r/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 's') {
+        this.currText = this.currText.replace(/s/g, event.target.value);
+        this.text = this.text.replace(/s/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 't') {
+        this.currText = this.currText.replace(/t/g, event.target.value);
+        this.text = this.text.replace(/t/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'u') {
+        this.currText = this.currText.replace(/u/g, event.target.value);
+        this.text = this.text.replace(/u/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'v') {
+        this.currText = this.currText.replace(/v/g, event.target.value);
+        this.text = this.text.replace(/v/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'w') {
+        this.currText = this.currText.replace(/w/g, event.target.value);
+        this.text = this.text.replace(/w/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'x') {
+        this.currText = this.currText.replace(/x/g, event.target.value);
+        this.text = this.text.replace(/x/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'y') {
+        this.currText = this.currText.replace(/y/g, event.target.value);
+        this.text = this.text.replace(/y/g, event.target.value);
+      }
+      else if(this.cypherArr[i] == 'z') {
+        this.currText = this.currText.replace(/z/g, event.target.value);
+        this.text = this.text.replace(/z/g, event.target.value);
+      }
     }
-    else if(this.cypherArr[i] == 'b') {
-      this.currText = this.currText.replace(/b/g, event.target.value);
-      this.text = this.text.replace(/b/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'c') {
-      this.currText = this.currText.replace(/c/g, event.target.value);
-      this.text = this.text.replace(/c/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'd') {
-      this.currText = this.currText.replace(/d/g, event.target.value);
-      this.text = this.text.replace(/d/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'e') {
-      this.currText = this.currText.replace(/e/g, event.target.value);
-      this.text = this.text.replace(/e/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'f') {
-      this.currText = this.currText.replace(/f/g, event.target.value);
-      this.text = this.text.replace(/f/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'g') {
-      this.currText = this.currText.replace(/g/g, event.target.value);
-      this.text = this.text.replace(/g/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'h') {
-      this.currText = this.currText.replace(/h/g, event.target.value);
-      this.text = this.text.replace(/h/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'i') {
-      this.currText = this.currText.replace(/i/g, event.target.value);
-      this.text = this.text.replace(/i/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'j') {
-      this.currText = this.currText.replace(/j/g, event.target.value);
-      this.text = this.text.replace(/j/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'k') {
-      this.currText = this.currText.replace(/k/g, event.target.value);
-      this.text = this.text.replace(/k/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'l') {
-      this.currText = this.currText.replace(/l/g, event.target.value);
-      this.text = this.text.replace(/l/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'm') {
-      this.currText = this.currText.replace(/m/g, event.target.value);
-      this.text = this.text.replace(/m/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'n') {
-      this.currText = this.currText.replace(/n/g, event.target.value);
-      this.text = this.text.replace(/n/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'o') {
-      this.currText = this.currText.replace(/o/g, event.target.value);
-      this.text = this.text.replace(/o/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'p') {
-      this.currText = this.currText.replace(/p/g, event.target.value);
-      this.text = this.text.replace(/p/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'q') {
-      this.currText = this.currText.replace(/q/g, event.target.value);
-      this.text = this.text.replace(/q/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'r') {
-      this.currText = this.currText.replace(/r/g, event.target.value);
-      this.text = this.text.replace(/r/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 's') {
-      this.currText = this.currText.replace(/s/g, event.target.value);
-      this.text = this.text.replace(/s/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 't') {
-      this.currText = this.currText.replace(/t/g, event.target.value);
-      this.text = this.text.replace(/t/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'u') {
-      this.currText = this.currText.replace(/u/g, event.target.value);
-      this.text = this.text.replace(/u/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'v') {
-      this.currText = this.currText.replace(/v/g, event.target.value);
-      this.text = this.text.replace(/v/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'w') {
-      this.currText = this.currText.replace(/w/g, event.target.value);
-      this.text = this.text.replace(/w/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'x') {
-      this.currText = this.currText.replace(/x/g, event.target.value);
-      this.text = this.text.replace(/x/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'y') {
-      this.currText = this.currText.replace(/y/g, event.target.value);
-      this.text = this.text.replace(/y/g, event.target.value);
-    }
-    else if(this.cypherArr[i] == 'z') {
-      this.currText = this.currText.replace(/z/g, event.target.value);
-      this.text = this.text.replace(/z/g, event.target.value);
-    }
+    this.tempDecrypt[i] = "" + this.workingDecrypt[i];
+    this.tempEncrypt[i] = "" + this.workingEncrypt[i];
   }
 
   onKeyEncrypt(event: any, i) {
@@ -844,7 +928,7 @@ export class CryptMonoComponent implements OnInit {
     this.chosenWord = "";
     if(this.list0) {
       this.chosenWord = this.possibleTerms[this.listIdx];
-      if(this.conflictResults[this.listIdx].length > 0) {
+      if(this.conflictResults[this.listIdx]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -857,7 +941,7 @@ export class CryptMonoComponent implements OnInit {
     }
     if(this.list1) {
       this.chosenWord = this.possibleTerms[this.listIdx + 1];
-      if(this.conflictResults[this.listIdx + 1].length > 0) {
+      if(this.conflictResults[this.listIdx + 1]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -870,7 +954,7 @@ export class CryptMonoComponent implements OnInit {
     }
     if(this.list2) {
       this.chosenWord = this.possibleTerms[this.listIdx + 2];
-      if(this.conflictResults[this.listIdx + 2].length > 0) {
+      if(this.conflictResults[this.listIdx + 2]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -883,7 +967,7 @@ export class CryptMonoComponent implements OnInit {
     }
     if(this.list3) {
       this.chosenWord = this.possibleTerms[this.listIdx + 3];
-      if(this.conflictResults[this.listIdx + 3].length > 0) {
+      if(this.conflictResults[this.listIdx + 3]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -896,7 +980,7 @@ export class CryptMonoComponent implements OnInit {
     }
     if(this.list4) {
       this.chosenWord = this.possibleTerms[this.listIdx + 4];
-      if(this.conflictResults[this.listIdx + 4].length > 0) {
+      if(this.conflictResults[this.listIdx + 4]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -909,7 +993,7 @@ export class CryptMonoComponent implements OnInit {
     }
     if(this.list5) {
       this.chosenWord = this.possibleTerms[this.listIdx + 5];
-      if(this.conflictResults[this.listIdx + 5].length > 0) {
+      if(this.conflictResults[this.listIdx + 5]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -922,7 +1006,7 @@ export class CryptMonoComponent implements OnInit {
     }
     if(this.list6) {
       this.chosenWord = this.possibleTerms[this.listIdx + 6];
-      if(this.conflictResults[this.listIdx + 6].length > 0) {
+      if(this.conflictResults[this.listIdx + 6]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -935,7 +1019,7 @@ export class CryptMonoComponent implements OnInit {
     }
     if(this.list7) {
       this.chosenWord = this.possibleTerms[this.listIdx + 7];
-      if(this.conflictResults[this.listIdx + 7].length > 0) {
+      if(this.conflictResults[this.listIdx + 7]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -948,7 +1032,7 @@ export class CryptMonoComponent implements OnInit {
     }
     if(this.list8) {
       this.chosenWord = this.possibleTerms[this.listIdx + 8];
-      if(this.conflictResults[this.listIdx + 8].length > 0) {
+      if(this.conflictResults[this.listIdx + 8]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -961,7 +1045,7 @@ export class CryptMonoComponent implements OnInit {
     }
     if(this.list9) {
       this.chosenWord = this.possibleTerms[this.listIdx + 9];
-      if(this.conflictResults[this.listIdx + 9].length > 0) {
+      if(this.conflictResults[this.listIdx + 9]) {
         for(var m = 0; m < this.chosenWord.length; m++) {
           if(this.workingDecrypt.indexOf(this.searchTerm.charAt(m)) >= 0) {
             this.replaceForList(this.workingDecrypt[this.workingDecrypt.indexOf(this.searchTerm.charAt(m))], m);
@@ -1206,7 +1290,7 @@ export class CryptMonoComponent implements OnInit {
       if(this.equalArray(this.convertToArray(tmp), wordArray)) {
         ind = this.originalText.indexOf(tmp);
         this.conflictResults[j] = this.conflict(tmp);
-        if((ind == j) && (this.showAllYes || this.conflictResults[j] == "")) {
+        if((ind == j) && (this.showAllYes || this.conflictResults[j].length == 0)) {
           this.possibleTerms[this.possibleTermIdx] = this.originalText.substring(j, j + n);
           this.possibleTermIdx++;
           this.chiResults[j] = this.chiSquare(tmp);
@@ -1221,6 +1305,7 @@ export class CryptMonoComponent implements OnInit {
       if(this.freqResults[k] <= 0) {
         this.freqResults.splice(k, 1);
         this.chiResults.splice(k, 1);
+        this.conflictResults.splice(k, 1);
         k--;
       }
     }
@@ -1278,12 +1363,15 @@ export class CryptMonoComponent implements OnInit {
       x = this.searchTerm.charAt(m);
       y = str.charAt(m);
       n = this.workingDecrypt.indexOf(x);
-      if(n >= 0 && this.workingDecrypt[n] != '') {
+      if(n >= 0 && this.cypherArr[n] != y) {
         out = out + "*";
       }
       n = this.cypherArr.indexOf(y);
-      if(n >= 0 && this.workingDecrypt[n] != '') {
-        out = out + "*";
+      if(this.workingDecrypt[n] != '') {
+        if(this.workingDecrypt[n] != x) {
+          out = out + "*";
+          this.status = "here" + x;
+        }
       }
     }
     return out;
@@ -1370,7 +1458,7 @@ export class CryptMonoComponent implements OnInit {
 
   onPrevClick() {
     this.listIdx -= 10;
-    if(this.listIdx - 10 > 0) {
+    if(this.listIdx - 10 >= 0) {
       this.hasPrev10 = true;
     } else {
       this.hasPrev10 = false;
@@ -1563,6 +1651,9 @@ export class CryptMonoComponent implements OnInit {
           temp = this.possibleTerms[i];
           this.possibleTerms[i] = this.possibleTerms[j];
           this.possibleTerms[j] = temp;
+          temp = this.conflictResults[i];
+          this.conflictResults[i] = this.conflictResults[j];
+          this.conflictResults[j] = temp;
           i++;
           j--;
         }
@@ -1600,6 +1691,9 @@ export class CryptMonoComponent implements OnInit {
           temp = this.possibleTerms[i];
           this.possibleTerms[i] = this.possibleTerms[j];
           this.possibleTerms[j] = temp;
+          temp = this.conflictResults[i];
+          this.conflictResults[i] = this.conflictResults[j];
+          this.conflictResults[j] = temp;
           i++;
           j--;
         }
@@ -1624,6 +1718,66 @@ export class CryptMonoComponent implements OnInit {
       this.text = this.text.replace(/\n/g, "");
       this.text = this.text.replace(/\"/g, "");
       this.text = this.text.toLowerCase();
+
+      this.originalText = "" + this.text;
+
+      this.cyphertextFrequency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+      for(var m = 0; m < this.currText.length; m++) {
+        if(this.currText.charAt(m) == 'a') {
+          this.cyphertextFrequency[0]++;
+        } else if(this.currText.charAt(m) == 'b') {
+          this.cyphertextFrequency[1]++;
+        } else if(this.currText.charAt(m) == 'c') {
+          this.cyphertextFrequency[2]++;
+        } else if(this.currText.charAt(m) == 'd') {
+          this.cyphertextFrequency[3]++;
+        } else if(this.currText.charAt(m) == 'e') {
+          this.cyphertextFrequency[4]++;
+        } else if(this.currText.charAt(m) == 'f') {
+          this.cyphertextFrequency[5]++;
+        } else if(this.currText.charAt(m) == 'g') {
+          this.cyphertextFrequency[6]++;
+        } else if(this.currText.charAt(m) == 'h') {
+          this.cyphertextFrequency[7]++;
+        } else if(this.currText.charAt(m) == 'i') {
+          this.cyphertextFrequency[8]++;
+        } else if(this.currText.charAt(m) == 'j') {
+          this.cyphertextFrequency[9]++;
+        } else if(this.currText.charAt(m) == 'k') {
+          this.cyphertextFrequency[10]++;
+        } else if(this.currText.charAt(m) == 'l') {
+          this.cyphertextFrequency[11]++;
+        } else if(this.currText.charAt(m) == 'm') {
+          this.cyphertextFrequency[12]++;
+        } else if(this.currText.charAt(m) == 'n') {
+          this.cyphertextFrequency[13]++;
+        } else if(this.currText.charAt(m) == 'o') {
+          this.cyphertextFrequency[14]++;
+        } else if(this.currText.charAt(m) == 'p') {
+          this.cyphertextFrequency[15]++;
+        } else if(this.currText.charAt(m) == 'q') {
+          this.cyphertextFrequency[16]++;
+        } else if(this.currText.charAt(m) == 'r') {
+          this.cyphertextFrequency[17]++;
+        } else if(this.currText.charAt(m) == 's') {
+          this.cyphertextFrequency[18]++;
+        } else if(this.currText.charAt(m) == 't') {
+          this.cyphertextFrequency[19]++;
+        } else if(this.currText.charAt(m) == 'u') {
+          this.cyphertextFrequency[20]++;
+        } else if(this.currText.charAt(m) == 'v') {
+          this.cyphertextFrequency[21]++;
+        } else if(this.currText.charAt(m) == 'w') {
+          this.cyphertextFrequency[22]++;
+        } else if(this.currText.charAt(m) == 'x') {
+          this.cyphertextFrequency[23]++;
+        } else if(this.currText.charAt(m) == 'y') {
+          this.cyphertextFrequency[24]++;
+        } else if(this.currText.charAt(m) == 'z') {
+          this.cyphertextFrequency[25]++;
+        }
+      }
     }
   }
 }
