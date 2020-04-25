@@ -1453,7 +1453,11 @@ export class CryptMonoComponent implements OnInit {
     this.list7 = "";
     this.list8 = "";
     this.list9 = "";
-    this.status = "Search Results " + (this.listIdx + 1) + "-" + (this.listIdx + 10) + " (of " + this.possibleTerms.length + ")";
+    if(this.listIdx + 10 > this.possibleTerms.length) {
+      this.status = "Search Results " + (this.listIdx + 1) + "-" + this.possibleTerms.length + " (of " + this.possibleTerms.length + ")";
+    } else {
+      this.status = "Search Results " + (this.listIdx + 1) + "-" + (this.listIdx + 10) + " (of " + this.possibleTerms.length + ")";
+    }
   }
 
   onPrevClick() {
